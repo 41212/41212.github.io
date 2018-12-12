@@ -3,7 +3,6 @@
 <title>41212</title>
 <script>
     const remote = require('electron').remote;
-    // Initialize Firebase
     var config = {
         apiKey: "AIzaSyA71xaNIBk3fC7SY7haa1R4qejpk6n7YHs",
         authDomain: "zgzg-2101f.firebaseapp.com",
@@ -183,25 +182,19 @@
 </script>
 <script>
 
-    // Render the PayPal button
 
     paypal.Button.render({
 
-        // Set your environment
+        env: 'sandbox',
 
-        env: 'sandbox', // sandbox | production
-
-        // Specify the style of the button
 
         style: {
-            layout: 'vertical',  // horizontal | vertical
-            size:   'medium',    // medium | large | responsive
-            shape:  'rect',      // pill | rect
-            color:  'gold'       // gold | blue | silver | black
+            layout: 'vertical',
+            size:   'medium',    
+            shape:  'rect',    
+            color:  'gold'       
         },
 
-        // PayPal Client IDs - replace with your own
-        // Create a PayPal app: https://developer.paypal.com/developer/applications/create
 
         client: {
             sandbox:    'AYTej4n82JNAXXM_3PDYwnjDyL3MnuQeg5VPFCrKrZPaz74omibPEHGbJb6c4FHVec_ek75Nf-ejzoUA',
