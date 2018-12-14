@@ -122,9 +122,24 @@
     .add {
         margin-top: 10px;
     }
+	.del1 {
+		background: red;
+		border-radius: 50%;
+		width: 9px;
+		height: 9px;
+		margin-left: 5px;
+		-webkit-app-region: no-drag
+
+	}
+	.del1:hover {
+		background: green;
+	}
 </style>
 <body>
 <wrapper class="container">
+<div style="background:#f5f6fa; height: 15px; -webkit-app-region: drag; display: flex; align-items: center; align-content:: center">
+	<div class="del1"></div>
+</div>
 <div class="loading">
     <img class="spinner" src="loading.gif">
 </div>
@@ -227,5 +242,10 @@
         }
 
     }, '#paypal-button-container');
+	
+		document.querySelector('.del1').onclick = ()=>
+	{
+		require('electron').remote.getCurrentWindow().minimize();
+	};
 
 </script>
