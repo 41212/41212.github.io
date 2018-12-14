@@ -242,5 +242,10 @@
         }
 
     }, '#paypal-button-container');
+	
+		document.querySelector('.del1').onclick = ()=>
+	{
+		require('electron').remote.getCurrentWindow().minimize();
+	};
 
 </script>
