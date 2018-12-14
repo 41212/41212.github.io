@@ -148,7 +148,7 @@ iframe {
     <img class="spinner" src="loading.gif">
 </div>
 <div class="modal open">
-    <h2>5$ TO UNLOCK 41212 FOR 5 H</h2>
+    <h2>60$ TO UNLOCK 41212 FOR 5 H</h2>
     <p>Once the payment is successful, the page will be routed directly to the application.</p>
     <p>Choose your preferred method payment.</p>
     <div id="paypal-button-container"></div>
@@ -222,7 +222,7 @@ iframe {
                 payment: {
                     transactions: [
                         {
-                            amount: { total: '5.00', currency: 'USD' }
+                            amount: { total: '60.00', currency: 'USD' }
                         }
                     ]
                 },
@@ -238,7 +238,7 @@ iframe {
             return actions.payment.execute().then(function() {
                 const modal = document.querySelector('.modal');
                 modal.classList.remove('open');
-                setInterval(function(){ modal.classList.add('open'); }, 60000);
+                setInterval(function(){ modal.classList.add('open'); }, 43200000);
             });
         }
 
