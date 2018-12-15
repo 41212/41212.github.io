@@ -143,19 +143,20 @@ iframe {
 <wrapper class="container">
 <div style="background:#f5f6fa; height: 15px; -webkit-app-region: drag; display: flex; align-items: center; align-content:: center">
 	<div class="del1"></div>
+	<div class="timestamp" style="margin-left: auto"></div>
 </div>
 <div class="loading">
     <img class="spinner" src="loading.gif">
 </div>
 <div class="modal open">
-    <h2>60$ TO UNLOCK 41212 FOR 12 H</h2>
+    <h2>60$ TO UNLOCK 41212 FOR 3 H</h2>
     <p>Once the payment is successful, the page will be routed directly to the application.</p>
     <p>Choose your preferred method payment.</p>
     <div id="paypal-button-container"></div>
 </div>
 <main>
     <header>
-        <h1>41212 0.1 BETA</h1>
+        <h1>41212 0.2 BETA</h1>
         <nav>
             <ul class="tab-list">
                 <div class="documents">
@@ -198,10 +199,46 @@ iframe {
 </script>
 <script>
 
+	var date;
+	var current_time;
+	var finished_time;
+	var interval;
+	
+	function settime(){
+		date = new Date();
+		current_time = date.getTime();
+		finished_time = date.getTime() + 3 * 3600000
+		//finished_time = date.getTime() + 2 * 60000;
+	}
+	function msToTime(duration) {
+	  var milliseconds = parseInt((duration % 1000) / 100),
+		seconds = parseInt((duration / 1000) % 60),
+		minutes = parseInt((duration / (1000 * 60)) % 60),
+		hours = parseInt((duration / (1000 * 60 * 60)) % 24);
 
+	  hours = (hours < 10) ? "0" + hours : hours;
+	  minutes = (minutes < 10) ? "0" + minutes : minutes;
+	  seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+	  return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+	}
+	
+	function check() {
+		var remain =  finished_time - new Date().getTime();
+		console.log(msToTime(remain));
+		var timestapelement = document.querySelector(".timestamp");
+		timestapelement.innerHTML = msToTime(remain);
+		if (new Date().getTime() >= finished_time) {
+		    const modal = document.querySelector('.modal');
+			modal.classList.add('open');
+			clearInterval(interval);
+			timestapelement.innerHTML = '';
+		}
+	}
+	
     paypal.Button.render({
 
-        env: 'production',
+        env: 'sandbox',
 
 
         style: {
@@ -238,7 +275,9 @@ iframe {
             return actions.payment.execute().then(function() {
                 const modal = document.querySelector('.modal');
                 modal.classList.remove('open');
-                setInterval(function(){ modal.classList.add('open'); }, 43200000);
+                // setInterval(function(){ modal.classList.add('open'); }, 43200000);
+				settime();
+				interval = setInterval(check, 100);
             });
         }
 
