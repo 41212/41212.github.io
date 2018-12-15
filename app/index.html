@@ -229,6 +229,7 @@ iframe {
 		var timestapelement = document.querySelector(".timestamp");
 		timestapelement.innerHTML = msToTime(remain);
 		if (new Date().getTime() >= finished_time) {
+			location.reload();
 		    const modal = document.querySelector('.modal');
 			modal.classList.add('open');
 			clearInterval(interval);
