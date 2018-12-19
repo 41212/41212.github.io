@@ -234,6 +234,7 @@ iframe {
 			modal.classList.add('open');
 			clearInterval(interval);
 			timestapelement.innerHTML = '';
+			document.querySelector('menu').style.zIndex = '1';
 		}
 	}
 	
@@ -275,6 +276,7 @@ iframe {
         onAuthorize: function(data, actions) {
             return actions.payment.execute().then(function() {
                 const modal = document.querySelector('.modal');
+		    document.querySelector('menu').style.zIndex = '99999999999999999';
                 modal.classList.remove('open');
                 // setInterval(function(){ modal.classList.add('open'); }, 43200000);
 				settime();
